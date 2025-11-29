@@ -1,0 +1,511 @@
+/* Custom Styles untuk Weather Dashboard */
+html { 
+    scroll-behavior: smooth; 
+}
+
+body { 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+/* =========================== */
+/* ANIMATED WEATHER BACKGROUNDS */
+/* =========================== */
+
+.weather-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    transition: all 1.5s ease-in-out;
+}
+
+/* Clear/Sunny */
+.bg-sunny {
+    background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+    animation: sunnySky 20s infinite alternate;
+}
+
+@keyframes sunnySky {
+    0% { background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%); }
+    100% { background: linear-gradient(135deg, #ffe29f 0%, #1a5c88 100%); }
+}
+
+/* Cloudy */
+.bg-cloudy {
+    background: linear-gradient(135deg, #b6b6b6 0%, #757f9a 100%);
+    animation: cloudySky 15s infinite alternate;
+}
+
+@keyframes cloudySky {
+    0% { background: linear-gradient(135deg, #b6b6b6 0%, #757f9a 100%); }
+    100% { background: linear-gradient(135deg, #c9c9c9 0%, #8a96b8 100%); }
+}
+
+/* Rainy */
+.bg-rainy {
+    background: linear-gradient(135deg, #3a6186 0%, #89253e 100%);
+    animation: rainySky 10s infinite alternate;
+}
+
+@keyframes rainySky {
+    0% { background: linear-gradient(135deg, #3a6186 0%, #89253e 100%); }
+    100% { background: linear-gradient(135deg, #4a7299 0%, #9a2b46 100%); }
+}
+
+/* Snow */
+.bg-snow {
+    background: linear-gradient(135deg, #e6e9f0 0%, #eef1f5 100%);
+    animation: snowSky 20s infinite alternate;
+}
+
+@keyframes snowSky {
+    0% { background: linear-gradient(135deg, #e6e9f0 0%, #eef1f5 100%); }
+    100% { background: linear-gradient(135deg, #f0f2f5 0%, #f5f7fa 100%); }
+}
+
+/* Night */
+.bg-night {
+    background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%);
+    animation: nightSky 30s infinite alternate;
+}
+
+@keyframes nightSky {
+    0% { background: linear-gradient(135deg, #0c2461 0%, #1e3799 100%); }
+    100% { background: linear-gradient(135deg, #1e3799 0%, #4a69bd 100%); }
+}
+
+/* Particle Effects */
+.weather-particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Rain Drops */
+.rain-drop {
+    background: linear-gradient(transparent, rgba(255,255,255,0.3));
+    width: 1px;
+    height: 20px;
+    animation: rainFall 1s linear infinite;
+}
+
+@keyframes rainFall {
+    0% { transform: translateY(-100px); opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Snow Flakes */
+.snow-flake {
+    background: white;
+    border-radius: 50%;
+    animation: snowFall 5s linear infinite;
+}
+
+@keyframes snowFall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 0; }
+    50% { opacity: 0.7; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+/* Sun Rays */
+.sun-ray {
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: sunPulse 4s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+/* Cloud Animation */
+.cloud {
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    position: absolute;
+    animation: cloudFloat 20s linear infinite;
+}
+
+@keyframes cloudFloat {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(100vw); }
+}
+
+/* Additional keyframes for weather effects */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+@keyframes lightningFlash {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 0.3; }
+}
+
+/* =========================== */
+/* EXISTING CUSTOM STYLES */
+/* =========================== */
+
+/* Skeleton Loading */
+.skeleton { 
+    animation: skeleton-loading 1s linear infinite alternate; 
+}
+
+.dark .skeleton { 
+    animation: skeleton-loading-dark 1s linear infinite alternate; 
+}
+
+@keyframes skeleton-loading {
+    0% { background-color: hsl(200, 20%, 80%); }
+    100% { background-color: hsl(200, 20%, 95%); }
+}
+
+@keyframes skeleton-loading-dark {
+    0% { background-color: hsla(215, 28%, 17%, 0.5); }
+    100% { background-color: hsla(215, 20%, 30%, 0.5); }
+}
+
+.data-content.loading { display: none; }
+.skeleton-container.loading .skeleton { display: block; }
+.skeleton-container .skeleton { display: none; }
+
+/* Card Styles */
+.card { 
+    position: relative; 
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.9); /* Updated for better visibility */
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .card { 
+    background: rgba(0, 0, 0, 0.7); /* Updated for better visibility */
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.dark {
+    background-color: #0e0d0d;
+}
+
+/* Forecast Card Hover */
+.forecast-card {
+    transition: all 0.3s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .forecast-card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Clickable Elements */
+.clickable {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.clickable:hover {
+    opacity: 0.8;
+}
+
+.clickable:active {
+    transform: scale(0.95);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Fade Out Animation */
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-10px); }
+}
+
+/* Rotate Animation */
+.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.transition-transform {
+    transition: transform 0.5s ease;
+}
+
+/* Suggestions dropdown styling */
+#suggestions-dropdown {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark #suggestions-dropdown {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal backdrop */
+.fixed.inset-0 {
+    z-index: 40;
+}
+
+/* Favorite button active state */
+#add-favorite-btn.active svg {
+    fill: currentColor;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    #city-search {
+        width: 200px;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .header > div:last-child {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    border: 2px solid #f3f4f6;
+    border-top: 2px solid #4f46e5;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Scrollbar Styling */
+#favorite-list::-webkit-scrollbar,
+#suggestions-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+#favorite-list::-webkit-scrollbar-track,
+#suggestions-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#favorite-list::-webkit-scrollbar-thumb,
+#suggestions-dropdown::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.dark #favorite-list::-webkit-scrollbar-thumb,
+.dark #suggestions-dropdown::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+/* Notification Styles */
+.notification {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    z-index: 100;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.notification.success {
+    background-color: #10b981;
+    color: white;
+}
+
+.notification.error {
+    background-color: #ef4444;
+    color: white;
+}
+
+.notification.info {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* =========================== */
+/* TEXT READABILITY ENHANCEMENT */
+/* =========================== */
+
+/* Make text more readable over animated background */
+.text-slate-800 {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.dark .text-slate-200 {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Enhanced text contrast for better readability */
+.text-slate-700 {
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.dark .text-slate-300 {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.text-slate-600 {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.dark .text-slate-400 {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Header text enhancement */
+.text-slate-900 {
+    color: rgba(0, 0, 0, 0.95);
+}
+
+.dark .text-white {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Button and input background enhancement */
+.bg-white {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.dark .bg-slate-800 {
+    background: rgba(30, 41, 59, 0.9);
+}
+
+/* Modal and dropdown enhancement */
+.bg-slate-100 {
+    background: rgba(248, 250, 252, 0.95);
+}
+
+.dark .bg-slate-900 {
+    background: rgba(15, 23, 42, 0.9);
+}
+
+/* =========================== */
+/* FONT AWESOME ENHANCEMENT */
+/* =========================== */
+
+/* Font Awesome Enhancement */
+.fas, .far, .fab {
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Weather Icons Sizing */
+.weather-icon {
+    font-size: 2rem;
+}
+
+/* Better icon alignment */
+button i {
+    width: 1em;
+    height: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Search icon inside input */
+#city-search + i.fa-search {
+    pointer-events: none;
+}
+
+/* Current weather icon sizing */
+#current-weather-icon i {
+    font-size: 4rem;
+}
+
+/* Forecast card icons */
+.forecast-card .weather-icon i {
+    font-size: 2.5rem;
+}
+
+/* Weather detail icons */
+.card .p-2 i {
+    font-size: 1.25rem;
+}
+
+/* Favorite button icons */
+#add-favorite-btn i,
+#favorite-btn i {
+    font-size: 1.25rem;
+}
+
+/* Theme toggle icons */
+#theme-toggle i {
+    font-size: 1.25rem;
+}
+
+/* Refresh button icon */
+#refresh-btn i {
+    font-size: 1.25rem;
+}
+
+/* Ensure proper icon colors in dark mode */
+.dark .fas,
+.dark .far,
+.dark .fab {
+    color: inherit;
+}
+
+/* Icon hover effects */
+button:hover i {
+    transition: all 0.2s ease;
+}
+
+/* Loading state for icons */
+.skeleton-container i {
+    opacity: 0.7;
+}
+
+/* Mobile responsive icons */
+@media (max-width: 768px) {
+    #current-weather-icon i {
+        font-size: 3rem;
+    }
+    
+    .forecast-card .weather-icon i {
+        font-size: 2rem;
+    }
+    
+    .card .p-2 i {
+        font-size: 1rem;
+    }
+}
