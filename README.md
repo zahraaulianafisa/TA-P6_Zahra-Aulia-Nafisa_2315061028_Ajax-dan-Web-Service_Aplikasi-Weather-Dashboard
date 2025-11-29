@@ -2,7 +2,8 @@
 
 Aplikasi web untuk memantau informasi cuaca terkini dan prakiraan 5 hari ke depan dengan antarmuka yang modern dan responsif.
 <img width="1648" height="774" alt="image" src="https://github.com/user-attachments/assets/e170c9f4-1292-42a8-b98f-e696f5f1a1bf" />
-<img width="1648" height="661" alt="image" src="https://github.com/user-attachments/assets/b3b7a51e-018f-4209-8c3d-102941bd4a1e" />
+<img width="1649" height="408" alt="image" src="https://github.com/user-attachments/assets/6b304d66-7e3f-405e-905c-023e8fc142ed" />
+
 
 ## ✨ Fitur Utama
 
